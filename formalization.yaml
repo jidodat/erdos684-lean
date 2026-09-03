@@ -136,21 +136,7 @@ related_formalizations:
 automation:
   methods:
     - method: agent
-      models: ["Claude Fable 5.1 (Anthropic)"]
-      framework: "Claude Code"
-      role: >-
-        Wrote the Lean source in this repository, working in Claude Code under the
-        direction and review of the author: the file layout mirroring the paper's
-        sections, the statements of the lemmas, and the proofs.  The author wrote the
-        paper being formalized, chose the target and the scope, and reviewed the
-        statements of record in Challenge.lean against the paper.
-      tool_setup: >-
-        One orchestrating session designing the definitions and lemma statements, then
-        one sub-agent per file filling in proofs against the fixed statements, each
-        checked by `lake build`; unused hypotheses were removed afterwards.
-  notes: >-
-    Every step is checked by Lean.  The author is responsible for the mathematical
-    content; the AI system is credited here and not listed as an author.
+      role: "AI-assisted Lean development under the author's direction and review."
 
 review:
   status: self-assessed
