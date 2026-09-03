@@ -83,6 +83,12 @@ Status (2026-09-03): see the bottom of this file.
 Additional deviation: `D_split` (four-range decomposition) carries the hypothesis `M ≤ K`, which
 the paper uses implicitly (`M < K`, (14)).
 
+## Paper
+
+`paper/erdos684_v3.pdf` is the paper as submitted to arXiv (arXiv:2604.23784v3, 13 pages, including
+Section 10 "Formal verification"), identical to the arXiv version.  The paper is distributed under the
+license chosen on arXiv (CC BY 4.0); the Apache 2.0 license of this repository applies to the Lean code.
+
 ## Build
 
 ```
