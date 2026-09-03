@@ -89,6 +89,22 @@ the paper uses implicitly (`M < K`, (14)).
 Section 10 "Formal verification"), identical to the arXiv version.  The paper is distributed under the
 license chosen on arXiv (CC BY 4.0); the Apache 2.0 license of this repository applies to the Lean code.
 
+## Palomar statement of record
+
+For registration in the [Palomar registry](https://palomar-registry.org/) the repository carries a
+Challenge/Solution pair checked by [Comparator](https://github.com/leanprover/comparator):
+
+* `Challenge.lean` — imports Mathlib only; defines `u(n,k)` and `f(n)` (namespace
+  `Erdos684.Palomar`) and states the five compared declarations with `sorry` holes:
+  `main_theorem` (Theorem 1.2, infinitely-often form), `main_theorem_limsup` (paper (4)),
+  `unbounded` (paper (5)), `lt_f_iff` and `u_mul_eq_choose` (meaning of the definitions).
+* `Solution.lean` — the same declarations, proved as one-line bridges to the `Erdos684Lean` library.
+* `comparator.json` — the Comparator configuration (standard axioms only).
+* `formalization.yaml` — provenance, sources, classification, automation and review metadata.
+
+`lake build Challenge Solution` builds both; `#print axioms` on each compared theorem gives
+`[propext, Classical.choice, Quot.sound]`.
+
 ## Build
 
 ```

@@ -1,0 +1,12 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos684.Palomar.main_theorem",
+    "Erdos684.Palomar.main_theorem_limsup",
+    "Erdos684.Palomar.unbounded",
+    "Erdos684.Palomar.lt_f_iff",
+    "Erdos684.Palomar.u_mul_eq_choose"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}

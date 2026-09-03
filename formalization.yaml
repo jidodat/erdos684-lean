@@ -1,0 +1,201 @@
+# formalization.yaml — adopted from https://github.com/mathlib-initiative/formalization.yaml
+version: "v0.4"
+
+project:
+  name: "Erdős Problem 684: f(n)/log n is unbounded — a Lean 4 formalization of arXiv:2604.23784"
+  description: >-
+    A Lean 4 formalization, against Mathlib, of the main theorem of J. H. Bae,
+    "Unbounded logarithmic limsup in Erdős Problem 684 via shifted carry scheduling"
+    (arXiv:2604.23784, v3).  For 0 ≤ k ≤ n write C(n,k) = u·v with u supported on the
+    primes ≤ k and v on the primes in (k,n], and let f(n) be the least k with u > n²;
+    Erdős asked for bounds on f(n) (Problem 684 in Bloom's database).  The compared
+    theorems state that for every ε > 0 there are infinitely many n with
+    f(n) > (1/2 − ε)·log n·log log n / log log log n, equivalently
+    limsup f(n)·log log log n /(log n·log log n) ≥ 1/2 (stated in the extended
+    nonnegative reals), and in particular that f(n)/log n is unbounded, so no estimate
+    f(n) = O(log n) holds.  This strengthens the subsequential lower bound
+    (1/2 − o(1)) log n of Alexeev–Putterman–Sawhney–Sellke–Valiant by a factor of order
+    log log n / log log log n; the general upper bound (log n)² remains the best known
+    and the exact order of f(n) is open.  Two further compared statements fix the
+    meaning of the definitions: u(n,k) times the part of C(n,k) supported on primes
+    exceeding k equals C(n,k), and K < f(n) holds exactly when u(n,k) ≤ n² for all
+    1 ≤ k ≤ min(K,n).  The proof follows the paper section by section (Kummer carries,
+    a product-cell code, a CRT count with exponential weighting, an anchored-fibre
+    selection lemma, and a four-range carry budget).  The prime number theorem is the
+    single analytic input: the library proves the theorem under the explicit hypothesis
+    θ(x) = x + O(x/log² x) and then discharges that hypothesis from the bound
+    ψ(x) = x + O(x·exp(−c(log x)^{1/10})) of the PrimeNumberTheoremAnd project
+    (Kontorovich, Tao et al.), so the compared theorems carry no hypotheses and depend
+    only on propext, Classical.choice and Quot.sound.
+  authors:
+    - "Ji Ho Bae"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Ji Ho Bae"
+
+classification:
+  arxiv: [math.NT, math.CO]
+  msc2020: ["11B65", "11N05", "11A51"]
+
+status:
+  scope: >-
+    COMPLETE.  All five compared theorems are fully proved.  The only sorries in the
+    repository are the five deliberate holes in Challenge.lean (the Comparator
+    convention); Solution.lean and the entire Erdos684Lean development library are
+    sorry-free, and every one of its 88 public theorems depends on exactly propext,
+    Classical.choice and Quot.sound (checked with #print axioms over all of them).
+  sorry_count: 5
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  main_results:
+    - declaration: "Erdos684.Palomar.main_theorem"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+    - declaration: "Erdos684.Palomar.main_theorem_limsup"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+    - declaration: "Erdos684.Palomar.unbounded"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+
+fidelity:
+  divergences: >-
+    The formal statements are those of the paper (Theorem 1.2, displays (4) and (5)),
+    with f(n) valued in ℕ∞ so that the paper's convention f(n) = +∞ for an empty
+    defining set is literal.  The proof differs from the paper's text in
+    simplifications only, all recorded in the README: in Lemma 3.1 only the upper
+    bound is needed and it is obtained from θ(K) ≤ (1+o(1))K and the monotonicity of
+    x ↦ 1 − log h/log x instead of partial summation, so that the Mertens-type sum
+    (10) of the paper is not used; ψ(x) − θ(x) = O(√x) is replaced by Mathlib's
+    ψ(x) − θ(x) ≤ 2√x log x; the prefix extraction in Step 3 of Lemma 4.1 is an
+    abstract lemma proved by induction on the total depth; the decomposition into the
+    ranges (I)–(IV) carries the hypothesis M ≤ K, which the paper uses implicitly;
+    and the prime number theorem enters as θ(x) = x + O(x/log² x), weaker than the
+    remainder (8) quoted in the paper, and is derived from PrimeNumberTheoremAnd's
+    MediumPNT rather than cited.
+
+sources:
+  - title: "Unbounded logarithmic limsup in Erdős Problem 684 via shifted carry scheduling"
+    authors: ["Ji Ho Bae"]
+    type: "paper"
+    id: "https://arxiv.org/abs/2604.23784"
+    location: "Theorem 1.2, displays (4) and (5); v3"
+    relationship: formalizes
+    author_endorsement: participated
+    note: >-
+      The paper whose main theorem this development formalizes.  The author of the
+      paper is the author of the formalization.
+
+  - title: "Erdős Problem #684 (erdosproblems.com)"
+    authors: ["Thomas F. Bloom (site)"]
+    contributors:
+      - name: "Paul Erdős"
+        role: "problem-proposer"
+    type: "web discussion"
+    id: "https://www.erdosproblems.com/684"
+    relationship: background
+    note: >-
+      The canonical record of the problem and of its status.  Used to fix the informal
+      statement of record; the problem remains open on the site.
+
+  - title: "Some unconventional problems in number theory"
+    authors: ["Paul Erdős"]
+    type: "paper"
+    id: "https://doi.org/10.1007/BF01903382"
+    location: "Acta Math. Acad. Sci. Hungar. 33 (1979), pp. 76–77"
+    relationship: background
+    note: "The 1979 origin of the question, where the threshold is called A(n)."
+
+  - title: "Short proofs in combinatorics and number theory"
+    authors: ["Boris Alexeev", "Max Putterman", "Mehtaab Sawhney", "Mark Sellke", "Gregory Valiant"]
+    type: "paper"
+    id: "https://arxiv.org/abs/2603.29961"
+    location: "Theorem 2.1"
+    relationship: background
+    note: >-
+      The previously known subsequential lower bound (1/2 − o(1)) log n, which the
+      formalized theorem strengthens, and the general upper bound (log n)², which is not
+      formalized here.
+
+related_formalizations:
+  - id: "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd"
+    relationship: builds-on
+    note: >-
+      Lean dependency, pinned at commit a5154676af9aa3095150ee410cdda80555aa0642
+      (2026-08-30).  Its theorem MediumPNT (ψ(x) = x + O(x·exp(−c(log x)^{1/10})),
+      standard axioms only) is used in PNT.lean to discharge the prime-number-theorem
+      hypothesis of the development.  It is a dependency of the Solution only; the
+      Challenge imports Mathlib alone.
+
+automation:
+  methods:
+    - method: agent
+      models: ["Claude Fable 5.1 (Anthropic)"]
+      framework: "Claude Code"
+      role: >-
+        Wrote the Lean source in this repository, working in Claude Code under the
+        direction and review of the author: the file layout mirroring the paper's
+        sections, the statements of the lemmas, and the proofs.  The author wrote the
+        paper being formalized, chose the target and the scope, and reviewed the
+        statements of record in Challenge.lean against the paper.
+      tool_setup: >-
+        One orchestrating session designing the definitions and lemma statements, then
+        one sub-agent per file filling in proofs against the fixed statements, each
+        checked by `lake build`; unused hypotheses were removed afterwards.
+  notes: >-
+    Every step is checked by Lean.  The author is responsible for the mathematical
+    content; the AI system is credited here and not listed as an author.
+
+review:
+  status: self-assessed
+  reviewers:
+    - "Ji Ho Bae"
+  notes: >-
+    The author reviewed the statements of record in Challenge.lean against the paper.
+    The proofs are checked by Lean (and, in the repository, by an axiom sweep over all
+    public theorems).  No external or independent human review of the Lean development
+    has been performed.
+
+alignment:
+  namespace: "Erdos684.Palomar"
+  statements:
+    - source: "paper (1), definition of u(n,k)"
+      lean: "Erdos684.Palomar.u"
+      module: "Challenge"
+      status: proved
+    - source: "paper (2), definition of f(n)"
+      lean: "Erdos684.Palomar.f"
+      module: "Challenge"
+      status: proved
+    - source: "paper Theorem 1.2, sequence form"
+      lean: "Erdos684.Palomar.main_theorem"
+      module: "Solution"
+      status: proved
+    - source: "paper (4), limsup form"
+      lean: "Erdos684.Palomar.main_theorem_limsup"
+      module: "Solution"
+      status: proved
+    - source: "paper (5)"
+      lean: "Erdos684.Palomar.unbounded"
+      module: "Solution"
+      status: proved
+
+limitations:
+  - >-
+    No novelty is claimed for the formalization beyond the paper it formalizes; the
+    mathematics is the paper's.  The paper's result is a lower bound on the worst-case
+    side of Erdős's question; the general upper bound (log n)² of Alexeev et al. is not
+    formalized and the exact order of f(n) remains open.
+  - >-
+    The compared theorems depend on propext, Classical.choice and Quot.sound, and,
+    through the Solution only, on the pinned PrimeNumberTheoremAnd development.
+
+acknowledgements: >-
+  The prime number theorem input is the MediumPNT theorem of the PrimeNumberTheoremAnd
+  project of Alex Kontorovich, Terence Tao and contributors.
