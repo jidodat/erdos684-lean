@@ -1,7 +1,7 @@
 # Lean 4 formalization of arXiv:2604.23784v3 (Erdős Problem 684) — unconditional version
 
 Formalization of J. H. Bae, *Unbounded logarithmic limsup in Erdős Problem 684 via shifted carry
-scheduling* (September 2026), in Lean 4.32.2 + Mathlib, with the prime number theorem supplied by the
+scheduling* (September 2026), in Lean 4.32.0 + Mathlib, with the prime number theorem supplied by the
 [PrimeNumberTheoremAnd](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd) project so that the
 main theorem carries **no hypothesis at all**.
 
@@ -116,13 +116,17 @@ The PrimeNumberTheoremAnd dependency (pinned by commit in `lakefile.toml`) is bu
 `lake build`; its Mathlib oleans come from the Mathlib cache.
 
 
-## Status (2026-09-03 20:19 KST)
+## Status (2026-09-04 03:00 KST)
 
-* `lake build` succeeds (8,696 jobs, verified from a clean `.lake/build`); no `sorry`, `axiom` or `native_decide` in `Erdos684Lean/`.
-* Axiom sweep over all 83 public theorems of the project: every one depends only on
+* `lake build` succeeds (8,700 jobs, including `Challenge` and `Solution`); no `sorry`, `axiom` or
+  `native_decide` in `Erdos684Lean/` or `Solution.lean` (the five `sorry`s in `Challenge.lean` are the
+  deliberate Comparator holes).
+* Axiom sweep over all 88 public theorems of `Erdos684Lean/` and the 7 of `Solution.lean`: every one depends only on
   `propext`, `Classical.choice`, `Quot.sound`.
 * `#print axioms` for `Erdos684.pntHyp`, `Erdos684.main_theorem_unconditional`,
   `Erdos684.unbounded_unconditional` (and the conditional `Erdos684.main_theorem`):
   `[propext, Classical.choice, Quot.sound]` — no `sorryAx`.
 * Dependency pins: PrimeNumberTheoremAnd commit `a5154676af9aa3095150ee410cdda80555aa0642`
-  (2026-08-30), Mathlib `905b95818eb32af7874a58b427f50c1711a5e96c` (v4.32.2).
+  (2026-08-30), Mathlib `81a5d257c8e410db227a6665ed08f64fea08e997` (a `master` commit with toolchain
+  v4.32.0; the `v4.32.2` tag that PrimeNumberTheoremAnd pins differs from it only in `lean-toolchain`),
+  toolchain `leanprover/lean4:v4.32.0`.
