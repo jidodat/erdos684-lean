@@ -44,7 +44,9 @@ status:
     convention); Solution.lean and the entire Erdos684Lean development library are
     sorry-free, and every one of its 88 public theorems depends on exactly propext,
     Classical.choice and Quot.sound (checked with #print axioms over all of them).
-  sorry_count: 5
+  # Unresolved proof-development sorries only; the five deliberate Comparator holes in
+  # Challenge.lean are excluded, as the formalization.yaml template prescribes.
+  sorry_count: 0
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]
   main_results:
