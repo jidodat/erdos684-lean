@@ -16,7 +16,7 @@ rev = "a5154676af9aa3095150ee410cdda80555aa0642"
 [[require]]
 name = "mathlib"
 scope = "leanprover-community"
-rev = "905b95818eb32af7874a58b427f50c1711a5e96c"
+rev = "81a5d257c8e410db227a6665ed08f64fea08e997"
 
 [[lean_lib]]
 name = "Erdos684Lean"
