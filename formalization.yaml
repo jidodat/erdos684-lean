@@ -184,6 +184,12 @@ limitations:
     The compared theorems depend on propext, Classical.choice and Quot.sound, and,
     through the Solution only, on the pinned PrimeNumberTheoremAnd development.
 
+registration:
+  palomar: "PALOMAR-2026-09-03-000006"
+  palomar_version: 1
+  palomar_url: "https://palomar-registry.org/entry?id=PALOMAR-2026-09-03-000006&version=1"
+  palomar_commit: "4543ff7764f9e8f1b2732a8464d5c19c945bfc52"
+
 acknowledgements: >-
   The prime number theorem input is the MediumPNT theorem of the PrimeNumberTheoremAnd
   project of Alex Kontorovich, Terence Tao and contributors.

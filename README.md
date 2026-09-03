@@ -91,6 +91,10 @@ license chosen on arXiv (CC BY 4.0); the Apache 2.0 license of this repository a
 
 ## Palomar statement of record
 
+Registered in the Palomar registry as
+[PALOMAR-2026-09-03-000006 (version 1)](https://palomar-registry.org/entry?id=PALOMAR-2026-09-03-000006&version=1)
+at commit `4543ff7764f9e8f1b2732a8464d5c19c945bfc52` (registered 2026-09-03 18:35 UTC).
+
 For registration in the [Palomar registry](https://palomar-registry.org/) the repository carries a
 Challenge/Solution pair checked by [Comparator](https://github.com/leanprover/comparator):
 
