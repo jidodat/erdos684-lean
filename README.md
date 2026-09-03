@@ -116,7 +116,7 @@ The PrimeNumberTheoremAnd dependency (pinned by commit in `lakefile.toml`) is bu
 `lake build`; its Mathlib oleans come from the Mathlib cache.
 
 
-## Status (2026-09-04 03:00 KST)
+## Status (2026-09-04 02:52 KST)
 
 * `lake build` succeeds (8,700 jobs, including `Challenge` and `Solution`); no `sorry`, `axiom` or
   `native_decide` in `Erdos684Lean/` or `Solution.lean` (the five `sorry`s in `Challenge.lean` are the
